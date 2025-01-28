@@ -24,8 +24,7 @@ general_categories = {
     "dog": [
         "golden retriever", "german shepherd", "beagle", "dalmatian", "pomeranian",
         "chihuahua", "bulldog", "poodle", "labrador retriever", "Pembroke Welsh Corgi", 
-        "English foxhound",  # Added this breed
-        # Add more dog breeds here as needed
+        "English foxhound",
     ],
     "cat": [
         "tabby", "Siamese cat", "Persian cat", "Egyptian cat", "tiger cat"
@@ -34,7 +33,7 @@ general_categories = {
     "horse": ["Arabian horse", "Clydesdale"],
     "bird": ["peacock", "parrot", "ostrich", "eagle"],
     "bear": ["polar bear", "brown bear", "panda"],
-    # Add more animal groupings as needed
+    "cow": ["Holstein", "Jersey", "Friesian", "Guernsey", "Zebu", "Brahman", "cow","American Staffordshire Terrier"]  # New cow category added
 }
 
 # 4. Load ImageNet labels
@@ -48,7 +47,7 @@ else:
         labels = json.load(f)
 
     # 5. Load and preprocess the input image
-    image_path = "images/dog.jpeg"  # Replace with your image path
+    image_path = "images/Cow.jpeg"  # Replace with your image path
     image = Image.open(image_path).convert("RGB")  # Ensure image is RGB
     input_tensor = preprocess(image).unsqueeze(0)  # Add batch dimension
 
@@ -66,7 +65,6 @@ else:
     for category, specific_labels in general_categories.items():
         if any(label.lower() in predicted_label.lower() for label in specific_labels):  # Case insensitive match
             general_category = category
-
             break
 
     # 9. Output the result
